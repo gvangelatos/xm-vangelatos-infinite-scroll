@@ -82,7 +82,6 @@ export class LocalStorageService {
     }
 
     const fullKey = this.prefix + key;
-    const oldValue = this.getItem<T>(key);
 
     let serialized: string;
     try {
@@ -111,7 +110,6 @@ export class LocalStorageService {
     if (!this.isAvailable()) {
       return false;
     }
-    const oldValue = this.getItem(key);
     try {
       window.localStorage.removeItem(this.prefix + key);
     } catch (err) {
