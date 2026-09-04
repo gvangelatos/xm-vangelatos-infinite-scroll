@@ -26,6 +26,10 @@ export class StorageParseError extends StorageError {
   }
 }
 
+export enum LocalStorageKeysEnum {
+  Favorites = 'favorites',
+}
+
 @Service()
 export class LocalStorageService {
   private readonly platformId = inject(PLATFORM_ID);

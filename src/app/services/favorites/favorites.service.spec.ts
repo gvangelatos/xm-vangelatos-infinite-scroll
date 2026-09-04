@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { FavoritesService } from './favorites.service';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import {
+  LocalStorageKeysEnum,
+  LocalStorageService,
+} from '../local-storage/local-storage.service';
 import { MockPicksumPhoto } from '../../testing/testing.mocks';
 
 describe('FavoritesService', () => {
@@ -32,7 +35,9 @@ describe('FavoritesService', () => {
 
   describe('init', () => {
     it('should load favorites from local storage', () => {
-      expect(localStorageService.getItem).toHaveBeenCalledWith('favorites');
+      expect(localStorageService.getItem).toHaveBeenCalledWith(
+        LocalStorageKeysEnum.Favorites,
+      );
       expect(service.favorites()).toEqual([]);
     });
 
@@ -74,9 +79,10 @@ describe('FavoritesService', () => {
     it('should persist favorites after adding', () => {
       service.addFavorite(MockPicksumPhoto);
 
-      expect(localStorageService.setItem).toHaveBeenCalledWith('favorites', [
-        MockPicksumPhoto,
-      ]);
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        LocalStorageKeysEnum.Favorites,
+        [MockPicksumPhoto],
+      );
     });
 
     it('should replace an existing favorite with the same id', () => {
@@ -116,9 +122,10 @@ describe('FavoritesService', () => {
     it('should persist favorites after removing', () => {
       service.removeFavorite(MockPicksumPhoto.id);
 
-      expect(localStorageService.setItem).toHaveBeenCalledWith('favorites', [
-        MockPicksumPhoto2,
-      ]);
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        LocalStorageKeysEnum.Favorites,
+        [MockPicksumPhoto2],
+      );
     });
 
     it('should do nothing when removing a favorite that does not exist', () => {
@@ -128,10 +135,10 @@ describe('FavoritesService', () => {
         MockPicksumPhoto,
         MockPicksumPhoto2,
       ]);
-      expect(localStorageService.setItem).toHaveBeenCalledWith('favorites', [
-        MockPicksumPhoto,
-        MockPicksumPhoto2,
-      ]);
+      expect(localStorageService.setItem).toHaveBeenCalledWith(
+        LocalStorageKeysEnum.Favorites,
+        [MockPicksumPhoto, MockPicksumPhoto2],
+      );
     });
   });
 

@@ -1,5 +1,8 @@
 import { computed, inject, Service, signal } from '@angular/core';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+import {
+  LocalStorageKeysEnum,
+  LocalStorageService,
+} from '../local-storage/local-storage.service';
 import { PicsumPhoto } from '../../models/picsum-photo.model';
 
 @Service()
@@ -37,13 +40,15 @@ export class FavoritesService {
 
   private loadFavorites() {
     const stored =
-      this.localStorageService.getItem<PicsumPhoto[]>('favorites') ?? [];
+      this.localStorageService.getItem<PicsumPhoto[]>(
+        LocalStorageKeysEnum.Favorites,
+      ) ?? [];
     this.favoritesMap.set(new Map(stored.map((photo) => [photo.id, photo])));
   }
 
   private persistFavorites() {
     this.localStorageService.setItem(
-      'favorites',
+      LocalStorageKeysEnum.Favorites,
       Array.from(this.favoritesMap().values()),
     );
   }
