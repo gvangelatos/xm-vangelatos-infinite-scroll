@@ -1,4 +1,4 @@
-import { inject, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -36,6 +36,9 @@ export class PhotoApiService {
   private readonly baseUrl = environment.picsumBaseUrl;
 
   private readonly photoListState = signal<PhotoListState>(initialState);
+  readonly isLoading = computed(() => this.photoListState().isLoading);
+  readonly error = computed(() => this.photoListState().error);
+  readonly photos = computed(() => this.photoListState().photos);
 
   loadNextPage() {
     if (this.photoListState().isLoading) {
