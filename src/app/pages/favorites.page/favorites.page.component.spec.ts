@@ -3,14 +3,7 @@ import { FavoritesPageComponent } from './favorites.page.component';
 import { Router } from '@angular/router';
 import { PicsumPhoto } from '../../models/picsum-photo.model';
 import { FavoritesService } from '../../services/favorites/favorites.service';
-import {
-  Component,
-  input,
-  NO_ERRORS_SCHEMA,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal, WritableSignal } from '@angular/core';
 import { ImageComponent } from '../../components/image/image.component';
 import { MockImageComponent } from '../../testing/testing.mocks';
 
