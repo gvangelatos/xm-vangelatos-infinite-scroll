@@ -9,7 +9,7 @@ import {
   ITEMS_PER_PAGE,
   STARTING_PAGE,
 } from '../../constants/shared.constants';
-import { catchError, finalize, of, tap } from 'rxjs';
+import { catchError, delay, finalize, of, take, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 interface PhotoListState {
@@ -55,6 +55,8 @@ export class PhotoApiService {
     this.http
       .get<PicsumPhoto[]>(`${this.baseUrl}/v2/list`, { params })
       .pipe(
+        delay(Math.floor(Math.random() * 101) + 200),
+        take(1),
         tap((resPhotos) => {
           this.photoListState.update((currState) => ({
             ...currState,
