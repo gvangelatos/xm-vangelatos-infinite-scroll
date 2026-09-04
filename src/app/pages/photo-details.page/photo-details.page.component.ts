@@ -17,13 +17,13 @@ import { AsyncPipe } from '@angular/common';
 import { ImageComponent } from '../../components/image/image.component';
 import { MatButton } from '@angular/material/button';
 
-interface PhotoDetailState {
+export interface PhotoDetailState {
   photo: PicsumPhoto | null;
   isLoading: boolean;
   hasError: boolean;
 }
 
-const INITIAL_STATE: PhotoDetailState = {
+export const INITIAL_STATE: PhotoDetailState = {
   photo: null,
   isLoading: true,
   hasError: false,
