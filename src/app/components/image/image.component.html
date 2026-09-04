@@ -1,0 +1,14 @@
+<div class="container" (click)="imageClicked()">
+    <img
+      [ngSrc]="'https://picsum.photos/id/' + photoModel().id + '/300'"
+      [alt]="photoModel().author"
+      [width]="300"
+      [height]="300"
+    />
+  <mat-icon
+    class="icon-overlay"
+    aria-hidden="false"
+    aria-label="Example home icon"
+    fontIcon="star"
+  />
+</div>
