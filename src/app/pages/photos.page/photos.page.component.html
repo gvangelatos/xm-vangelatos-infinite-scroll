@@ -3,7 +3,7 @@
     <app-image
       class="image"
       [photoModel]="img"
-      [priority]="$index < ITEMS_PER_PAGE"
+      [priority]="$index < priorityCount()"
       (photoClickedEmitter)="toggleFavourite($event)"
     />
   }

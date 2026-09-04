@@ -8,7 +8,7 @@ import {
   output,
   OutputEmitterRef,
 } from '@angular/core';
-import { IMG_TILE_SIZE } from '../constants/shared.constants';
+import { IMG_TILE_SIZE } from '../../constants/shared.constants';
 
 @Directive({
   selector: '[appInfiniteScrollTrigger]',
