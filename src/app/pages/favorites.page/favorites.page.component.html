@@ -1,0 +1,11 @@
+<div class="container">
+  @for (img of images(); track img.id) {
+    <app-image
+      [photoModel]="img"
+      [priority]="$index < priorityCount()"
+      (photoClickedEmitter)="openImage($event)"
+    />
+  } @empty {
+    No items in favourites.
+  }
+</div>

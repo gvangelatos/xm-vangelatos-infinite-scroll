@@ -1,5 +1,6 @@
 import {
   afterNextRender,
+  ChangeDetectionStrategy,
   computed,
   Directive,
   inject,
@@ -20,6 +21,7 @@ import {
     '[style.--col-count]': 'colCount()',
     '[style.--tile-size.px]': 'tileSize()',
   },
+  standalone: true,
 })
 export class PriorityCountDirective {
   readonly colCount = input(COL_COUNT);

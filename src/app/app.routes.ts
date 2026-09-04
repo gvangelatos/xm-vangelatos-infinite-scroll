@@ -11,7 +11,10 @@ export const routes: Routes = [
   },
   {
     path: 'favourites',
-    redirectTo: '',
+    loadComponent: () =>
+      import('./pages/favorites.page/favorites.page.component').then(
+        (m) => m.FavoritesPageComponent,
+      ),
   },
   {
     path: 'photos/:id',

@@ -1,5 +1,6 @@
 import {
   afterNextRender,
+  ChangeDetectionStrategy,
   Directive,
   ElementRef,
   inject,
@@ -12,6 +13,7 @@ import { IMG_TILE_SIZE } from '../../constants/shared.constants';
 
 @Directive({
   selector: '[appInfiniteScrollTrigger]',
+  standalone: true,
 })
 export class InfiniteScrollTriggerDirective implements OnDestroy {
   private readonly el = inject(ElementRef<HTMLElement>);
