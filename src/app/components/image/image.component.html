@@ -1,11 +1,23 @@
 <div class="container" (click)="imageClicked()">
+  <!--  need if-else because of error
+    NG02953: priority was updated after
+    initialization from NgOptimizedImage -->
+  @if (priority()) {
     <img
       [ngSrc]="'https://picsum.photos/id/' + photoModel().id + '/300'"
       [alt]="photoModel().author"
       [width]="300"
       [height]="300"
-      [priority]="priority()"
+      [priority]="true"
     />
+  } @else {
+    <img
+      [ngSrc]="'https://picsum.photos/id/' + photoModel().id + '/300'"
+      [alt]="photoModel().author"
+      [width]="300"
+      [height]="300"
+    />
+  }
   <mat-icon
     class="icon-overlay"
     aria-hidden="false"
