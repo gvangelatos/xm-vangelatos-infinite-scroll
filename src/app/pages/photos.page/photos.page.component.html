@@ -1,1 +1,21 @@
-<p>photos.page works!</p>
+<div class="container">
+  @for (img of images(); track img.id) {
+    <img
+      [ngSrc]="'https://picsum.photos/id/' + img.id + '/300'"
+      [alt]="img.author"
+      [width]="300"
+      [height]="300"
+    />
+  }
+</div>
+
+@if (error()) {
+  <p class="error">
+    {{ error() }}
+    <button class="retry-btn" (click)="loadNextPage()">Retry</button>
+  </p>
+}
+
+@if (isLoading()) {
+  <app-loading-spinner />
+}
