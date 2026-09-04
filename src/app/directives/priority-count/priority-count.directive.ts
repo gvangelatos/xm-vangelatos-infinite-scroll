@@ -8,7 +8,11 @@ import {
   signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { COL_COUNT, IMG_TILE_SIZE } from '../../constants/shared.constants';
+import {
+  COL_COUNT,
+  IMG_TILE_SIZE,
+  ITEMS_PER_PAGE,
+} from '../../constants/shared.constants';
 
 @Directive({
   selector: '[appPriorityCount]',
@@ -33,7 +37,7 @@ export class PriorityCountDirective {
     const cellSize = this.tileSize();
     const rows = Math.max(1, Math.ceil(this.innerHeight() / cellSize));
 
-    return this.colCount() * rows;
+    return Math.min(this.colCount() * rows, ITEMS_PER_PAGE);
   });
 
   constructor() {
