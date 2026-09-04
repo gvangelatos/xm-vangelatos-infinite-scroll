@@ -9,6 +9,11 @@
   }
 </div>
 
+<div
+  [appInfiniteScrollTrigger]="isLoading() || !!error()"
+  (visible)="loadNextPage()"
+></div>
+
 @if (error()) {
   <p class="error">
     {{ error() }}

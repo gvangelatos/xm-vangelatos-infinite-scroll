@@ -4,9 +4,14 @@ import { LoadingSpinnerComponent } from '../../components/loading-spinner/loadin
 import { ImageComponent } from '../../components/image/image.component';
 import { ITEMS_PER_PAGE } from '../../constants/shared.constants';
 import { PicsumPhoto } from '../../models/picsum-photo.model';
+import { InfiniteScrollTriggerDirective } from '../../directives/infinite-scroll-trigger.directive';
 
 @Component({
-  imports: [LoadingSpinnerComponent, ImageComponent],
+  imports: [
+    LoadingSpinnerComponent,
+    ImageComponent,
+    InfiniteScrollTriggerDirective,
+  ],
   selector: 'app-photos.page',
   styleUrl: './photos.page.component.scss',
   templateUrl: './photos.page.component.html',
