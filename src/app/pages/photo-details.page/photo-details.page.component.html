@@ -1,0 +1,20 @@
+<div class="container">
+  @if (imageModel$ | async; as model) {
+    @if (model.isLoading) {
+      <app-loading-spinner />
+    }
+    @if (model.hasError) {
+      <div class="error">Oops... Something went wrong!</div>
+    }
+    @if (model.photo) {
+      <app-image class="image" [photoModel]="model.photo" [priority]="true" />
+      <button matButton="elevated" (click)="toggleFavourite(model.photo)">
+        @if (isFavorite()) {
+          Remove from Favorites
+        } @else {
+          Add to Favorites
+        }
+      </button>
+    }
+  }
+</div>

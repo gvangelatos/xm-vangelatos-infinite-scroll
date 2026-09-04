@@ -10,7 +10,16 @@ import {
   ITEMS_PER_PAGE,
   STARTING_PAGE,
 } from '../../constants/shared.constants';
-import { catchError, delay, finalize, of, take, tap } from 'rxjs';
+import {
+  catchError,
+  delay,
+  finalize,
+  Observable,
+  of,
+  take,
+  tap,
+  throwError,
+} from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 interface PhotoListState {
@@ -46,6 +55,14 @@ export class PhotoApiService {
       return;
     }
     this.fetchPage(this.photoListState().page + 1);
+  }
+
+  getImageInfo(id: string | number): Observable<PicsumPhoto> {
+    return this.http.get<PicsumPhoto>(`${this.baseUrl}/id/${id}/info`).pipe(
+      catchError((err: HttpErrorResponse) => {
+        return throwError(() => err);
+      }),
+    );
   }
 
   private fetchPage(page: number) {
