@@ -1,10 +1,10 @@
 <div class="container">
   @for (img of images(); track img.id) {
-    <img
-      [ngSrc]="'https://picsum.photos/id/' + img.id + '/300'"
-      [alt]="img.author"
-      [width]="300"
-      [height]="300"
+    <app-image
+      class="image"
+      [photoModel]="img"
+      [priority]="$index < ITEMS_PER_PAGE"
+      (photoClickedEmitter)="toggleFavourite($event)"
     />
   }
 </div>
