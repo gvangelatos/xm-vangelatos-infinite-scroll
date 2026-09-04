@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, Injector, input } from '@angular/core';
 import { FavoritesService } from '../../services/favorites/favorites.service';
 import { PhotoApiService } from '../../services/photo-api/photo-api.service';
 import { toObservable } from '@angular/core/rxjs-interop';
@@ -37,13 +37,16 @@ const INITIAL_STATE: PhotoDetailState = {
 })
 export class PhotoDetailsPageComponent {
   readonly id = input.required<string>();
+  private readonly injector = inject(Injector);
   private readonly favoritesService = inject(FavoritesService);
   private readonly imageService = inject(PhotoApiService);
   readonly isFavorite = computed(() =>
     this.favoritesService.isFavorite(this.id())(),
   );
 
-  readonly imageModel$ = toObservable(this.id).pipe(
+  readonly imageModel$ = toObservable(this.id, {
+    injector: this.injector,
+  }).pipe(
     switchMap((id) => {
       return this.imageService.getImageInfo(id).pipe(
         distinctUntilChanged(),

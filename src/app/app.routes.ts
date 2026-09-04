@@ -18,7 +18,10 @@ export const routes: Routes = [
   },
   {
     path: 'photos/:id',
-    redirectTo: '',
+    loadComponent: () =>
+      import('./pages/photo-details.page/photo-details.page.component').then(
+        (m) => m.PhotoDetailsPageComponent,
+      ),
   },
   {
     path: '**',

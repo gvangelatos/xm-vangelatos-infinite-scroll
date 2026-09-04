@@ -21,7 +21,7 @@ export class FavoritesPageComponent {
   protected readonly images = this.favoritesService.favorites;
   protected readonly priorityCount = this.priorityCountDirective.priorityCount;
 
-  protected openImage(_imageModel: PicsumPhoto) {
-    //   navigate to details page
+  protected openImage(imageModel: PicsumPhoto) {
+    this.router.navigate(['/photos', imageModel.id]);
   }
 }
