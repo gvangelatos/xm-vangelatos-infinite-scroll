@@ -44,6 +44,7 @@ jspm_packages/
 
 # Angular
 .angular/
+.idea/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

@@ -1,0 +1,21 @@
+<mat-toolbar class="toolbar">
+  <a
+    matButton
+    routerLink="/"
+    [routerLinkActiveOptions]="{ exact: true }"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="tab"
+  >
+    Photos
+  </a>
+  <a
+    matButton
+    routerLink="/favourites"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="tab"
+  >
+    Favorites
+  </a>
+</mat-toolbar>

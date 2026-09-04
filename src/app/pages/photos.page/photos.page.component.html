@@ -1,0 +1,26 @@
+<div class="container">
+  @for (img of images(); track img.id) {
+    <app-image
+      class="image"
+      [photoModel]="img"
+      [priority]="$index < priorityCount()"
+      (photoClickedEmitter)="toggleFavourite($event)"
+    />
+  }
+</div>
+
+<div
+  [appInfiniteScrollTrigger]="isLoading() || !!error()"
+  (visible)="loadNextPage()"
+></div>
+
+@if (error()) {
+  <p class="error">
+    {{ error() }}
+    <button class="retry-btn" (click)="loadNextPage()">Retry</button>
+  </p>
+}
+
+@if (isLoading()) {
+  <app-loading-spinner />
+}
