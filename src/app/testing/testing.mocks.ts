@@ -1,4 +1,11 @@
-import { Component, input, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  Directive,
+  input,
+  output,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { PicsumPhoto } from '../models/picsum-photo.model';
 import { InfiniteScrollTriggerDirective } from '../directives/infinite-scroll-trigger/infinite-scroll-trigger.directive';
 import { COL_COUNT, IMG_TILE_SIZE } from '../constants/shared.constants';
@@ -46,6 +53,18 @@ export class MockPriorityCountDirectiveComponent {
   tileSize = signal(IMG_TILE_SIZE);
   @ViewChild(PriorityCountDirective)
   directive!: PriorityCountDirective;
+}
+
+@Directive()
+export class MockInfiniteScrollTriggerDirective {
+  readonly disabled = input<boolean>(false, {
+    alias: 'appInfiniteScrollTrigger',
+  });
+  readonly rootMargin = input('200px');
+  readonly visible = output<void>();
+  triggerVisible() {
+    this.visible.emit();
+  }
 }
 
 export const MockPicksumPhoto: PicsumPhoto = {

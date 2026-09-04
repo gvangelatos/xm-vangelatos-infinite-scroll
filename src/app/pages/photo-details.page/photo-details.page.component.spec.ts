@@ -13,11 +13,25 @@ import { NEVER, of, throwError } from 'rxjs';
 import { FavoritesPageComponent } from '../favorites.page/favorites.page.component';
 import { ImageComponent } from '../../components/image/image.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 describe('PhotoDetailsPageComponent', () => {
   let component: PhotoDetailsPageComponent;
   let fixture: ComponentFixture<PhotoDetailsPageComponent>;
   let imageService: jest.Mocked<PhotoApiService>;
+
+  beforeAll(() => {
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = environment.picsumBaseUrl;
+    document.head.appendChild(link);
+  });
+
+  afterAll(() => {
+    document.head
+      .querySelectorAll('link[rel="preconnect"]')
+      .forEach((el) => el.remove());
+  });
 
   beforeEach(async () => {
     imageService = {

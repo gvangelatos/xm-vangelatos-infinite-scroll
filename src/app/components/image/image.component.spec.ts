@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ImageComponent } from './image.component';
+import { MockPicksumPhoto } from '../../testing/testing.mocks';
 
 describe('ImageComponent', () => {
   let component: ImageComponent;
@@ -12,6 +13,8 @@ describe('ImageComponent', () => {
 
     fixture = TestBed.createComponent(ImageComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('photoModel', MockPicksumPhoto);
+    fixture.componentRef.setInput('priority', false);
     fixture.detectChanges();
   });
 

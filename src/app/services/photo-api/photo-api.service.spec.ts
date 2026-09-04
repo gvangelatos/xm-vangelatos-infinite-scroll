@@ -15,6 +15,7 @@ describe('PhotoApiService', () => {
   const baseUrl = environment.picsumBaseUrl;
 
   beforeEach(() => {
+    jest.useFakeTimers();
     TestBed.configureTestingModule({
       providers: [
         PhotoApiService,
@@ -25,7 +26,6 @@ describe('PhotoApiService', () => {
 
     service = TestBed.inject(PhotoApiService);
     httpMock = TestBed.inject(HttpTestingController);
-    jest.useFakeTimers();
   });
 
   afterEach(() => {
@@ -169,10 +169,14 @@ describe('PhotoApiService', () => {
     it('should not load another page while already loading', () => {
       service.loadNextPage();
       expect(service.isLoading()).toBe(true);
-      expect(httpMock.match(`${baseUrl}/v2/list`)).toHaveLength(1);
+      expect(
+        httpMock.match((req) => req.url === `${baseUrl}/v2/list`),
+      ).toHaveLength(1);
 
       service.loadNextPage();
-      expect(httpMock.match(`${baseUrl}/v2/list`)).toHaveLength(1);
+      expect(
+        httpMock.match((req) => req.url === `${baseUrl}/v2/list`),
+      ).toHaveLength(0);
     });
 
     it('should set isLoading to false after a successful request', () => {
