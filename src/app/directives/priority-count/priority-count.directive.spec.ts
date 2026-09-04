@@ -29,21 +29,31 @@ describe('PriorityCountDirective', () => {
     expect(directive).toBeTruthy();
   });
 
-  it('should return the correct priority count', () => {
+  it('should calculate priority count from columns and rows', async () => {
+    Object.defineProperty(window, 'innerHeight', {
+      configurable: true,
+      value: 800,
+    });
     fixture.componentInstance.colCount.set(4);
     fixture.componentInstance.tileSize.set(100);
 
     fixture.detectChanges();
+    await fixture.whenStable();
     expect(directive.priorityCount()).toBe(
       Math.min(4 * Math.ceil(window.innerHeight / 100), ITEMS_PER_PAGE),
     );
   });
 
-  it('should always return at least one row', () => {
+  it('should always return at least one row', async () => {
+    Object.defineProperty(window, 'innerHeight', {
+      configurable: true,
+      value: 800,
+    });
     fixture.componentInstance.colCount.set(4);
     fixture.componentInstance.tileSize.set(window.innerHeight + 1);
 
     fixture.detectChanges();
+    await fixture.whenStable();
     expect(directive.priorityCount()).toBe(4);
   });
 
