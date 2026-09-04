@@ -4,18 +4,18 @@
     initialization from NgOptimizedImage -->
   @if (priority()) {
     <img
-      [ngSrc]="'https://picsum.photos/id/' + photoModel().id + '/300'"
+      [ngSrc]="photoModel().constructed_url"
       [alt]="photoModel().author"
-      [width]="300"
-      [height]="300"
+      [width]="IMG_TILE_SIZE"
+      [height]="IMG_TILE_SIZE"
       [priority]="true"
     />
   } @else {
     <img
-      [ngSrc]="'https://picsum.photos/id/' + photoModel().id + '/300'"
+      [ngSrc]="photoModel().constructed_url"
       [alt]="photoModel().author"
-      [width]="300"
-      [height]="300"
+      [width]="IMG_TILE_SIZE"
+      [height]="IMG_TILE_SIZE"
     />
   }
   <mat-icon

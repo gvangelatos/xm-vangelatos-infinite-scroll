@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { PicsumPhoto } from '../../models/picsum-photo.model';
 import {
+  IMG_TILE_SIZE,
   ITEMS_PER_PAGE,
   STARTING_PAGE,
 } from '../../constants/shared.constants';
@@ -63,7 +64,13 @@ export class PhotoApiService {
         tap((resPhotos) => {
           this.photoListState.update((currState) => ({
             ...currState,
-            photos: [...currState.photos, ...resPhotos],
+            photos: [
+              ...currState.photos,
+              ...resPhotos.map((img) => ({
+                ...img,
+                constructed_url: `${this.baseUrl}/id/${img.id}/${IMG_TILE_SIZE}`,
+              })),
+            ],
             page,
           }));
         }),
