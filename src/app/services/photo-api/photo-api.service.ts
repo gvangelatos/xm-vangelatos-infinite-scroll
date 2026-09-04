@@ -14,6 +14,7 @@ import {
   catchError,
   delay,
   finalize,
+  map,
   Observable,
   of,
   take,
@@ -59,6 +60,10 @@ export class PhotoApiService {
 
   getImageInfo(id: string | number): Observable<PicsumPhoto> {
     return this.http.get<PicsumPhoto>(`${this.baseUrl}/id/${id}/info`).pipe(
+      map((photo: PicsumPhoto) => ({
+        ...photo,
+        constructed_url: `${this.baseUrl}/id/${photo.id}/${IMG_TILE_SIZE}`,
+      })),
       catchError((err: HttpErrorResponse) => {
         return throwError(() => err);
       }),
