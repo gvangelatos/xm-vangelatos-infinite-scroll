@@ -19,6 +19,7 @@ import { PicsumPhoto } from '../../models/picsum-photo.model';
 export class ImageComponent {
   readonly photoClickedEmitter = output<PicsumPhoto>();
   readonly photoModel = input.required<PicsumPhoto>();
+  readonly priority = input.required<boolean>();
 
   protected imageClicked() {
     this.photoClickedEmitter.emit(this.photoModel());
