@@ -6,7 +6,8 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RouterOutlet]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet],
 })
 export class AppComponent {
   title = 'gallery-template';
