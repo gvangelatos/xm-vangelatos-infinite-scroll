@@ -1,7 +1,8 @@
 import { Component, input, signal, ViewChild } from '@angular/core';
 import { PicsumPhoto } from '../models/picsum-photo.model';
 import { InfiniteScrollTriggerDirective } from '../directives/infinite-scroll-trigger/infinite-scroll-trigger.directive';
-import { IMG_TILE_SIZE } from '../constants/shared.constants';
+import { COL_COUNT, IMG_TILE_SIZE } from '../constants/shared.constants';
+import { PriorityCountDirective } from '../directives/priority-count/priority-count.directive';
 
 @Component({
   selector: 'app-image',
@@ -31,6 +32,20 @@ export class MockInfiniteScrollTriggerDirectiveComponent {
   disabled = signal(false);
   rootMargin = `${IMG_TILE_SIZE}px`;
   onVisible = jest.fn();
+}
+
+@Component({
+  standalone: true,
+  imports: [PriorityCountDirective],
+  template: `
+    <div appPriorityCount [colCount]="colCount()" [tileSize]="tileSize()"></div>
+  `,
+})
+export class MockPriorityCountDirectiveComponent {
+  colCount = signal(COL_COUNT);
+  tileSize = signal(IMG_TILE_SIZE);
+  @ViewChild(PriorityCountDirective)
+  directive!: PriorityCountDirective;
 }
 
 export const MockPicksumPhoto: PicsumPhoto = {
