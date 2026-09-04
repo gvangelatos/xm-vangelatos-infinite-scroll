@@ -5,6 +5,7 @@ import { ImageComponent } from '../../components/image/image.component';
 import { PicsumPhoto } from '../../models/picsum-photo.model';
 import { InfiniteScrollTriggerDirective } from '../../directives/infinite-scroll-trigger/infinite-scroll-trigger.directive';
 import { PriorityCountDirective } from '../../directives/priority-count/priority-count.directive';
+import { FavoritesService } from '../../services/favorites/favorites.service';
 
 @Component({
   imports: [
@@ -20,6 +21,7 @@ import { PriorityCountDirective } from '../../directives/priority-count/priority
   hostDirectives: [PriorityCountDirective],
 })
 export class PhotosPageComponent {
+  private readonly favoriteService = inject(FavoritesService);
   private readonly imageService = inject(PhotoApiService);
   private readonly priorityCountDirective = inject(PriorityCountDirective);
   protected readonly images = this.imageService.photos;
@@ -35,5 +37,9 @@ export class PhotosPageComponent {
     this.imageService.loadNextPage();
   }
 
-  protected toggleFavourite(_imageModel: PicsumPhoto) {}
+  protected toggleFavourite(imageModel: PicsumPhoto) {
+    this.favoriteService.isFavorite(imageModel.id)()
+      ? this.favoriteService.removeFavorite(imageModel.id)
+      : this.favoriteService.addFavorite(imageModel);
+  }
 }

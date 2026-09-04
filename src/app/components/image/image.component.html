@@ -20,8 +20,9 @@
   }
   <mat-icon
     class="icon-overlay"
+    [ngClass]="{ favorite: isFavourite() }"
     aria-hidden="false"
-    aria-label="Example home icon"
+    aria-label="favourites icon"
     fontIcon="star"
   />
 </div>
