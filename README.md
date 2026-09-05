@@ -18,7 +18,7 @@ An Angular photo gallery app with infinite scroll, built on the [Picsum Photos](
 - **Visible Loading State** - In views (`FavouritesPage`,`PhotosPage`,`PhotoDetailsPage`) a loading-spinner is displayed while images are loading
 - **Unit Tested** - core app functionalities are unit tested
 - **Material Design** - the app is using Angular Material
-- **Optimized Routes** - all routes are lazy loaded using `loadComponent`
+- **Optimized Routes** - all routes are lazy loaded using `loadComponent()`
 - **Data Persistence** - Favorites persist after a page refresh thanks to `LocalStorageService`
 
 
