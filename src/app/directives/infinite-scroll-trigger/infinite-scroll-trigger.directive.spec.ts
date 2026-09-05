@@ -64,6 +64,7 @@ describe('InfiniteScrollTriggerDirective', () => {
       [{ isIntersecting: true } as IntersectionObserverEntry],
       observer as unknown as IntersectionObserver,
     );
+    fixture.detectChanges();
     expect(emitSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -73,6 +74,7 @@ describe('InfiniteScrollTriggerDirective', () => {
       [{ isIntersecting: false } as IntersectionObserverEntry],
       observer as unknown as IntersectionObserver,
     );
+    fixture.detectChanges();
     expect(emitSpy).not.toHaveBeenCalled();
   });
 
@@ -84,6 +86,7 @@ describe('InfiniteScrollTriggerDirective', () => {
       [{ isIntersecting: true } as IntersectionObserverEntry],
       observer as unknown as IntersectionObserver,
     );
+    fixture.detectChanges();
     expect(emitSpy).not.toHaveBeenCalled();
   });
 
