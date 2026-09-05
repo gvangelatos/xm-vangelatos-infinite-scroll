@@ -1,6 +1,9 @@
 <div class="main-page">
   <app-header />
   <main class="page-content">
+    @if (isNavigating()){
+      <mat-progress-bar mode="indeterminate" />
+    }
     <router-outlet />
   </main>
 </div>
