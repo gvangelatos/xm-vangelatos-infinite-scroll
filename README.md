@@ -20,6 +20,8 @@ An Angular photo gallery app with infinite scroll, built on the [Picsum Photos](
 - **Material Design** - the app is using Angular Material
 - **Optimized Routes** - all routes are lazy loaded using `loadComponent()`
 - **Data Persistence** - Favorites persist after a page refresh thanks to `LocalStorageService`
+- **Faster Image Fetching** - Using `preconnect` tag for Picsum
+- **Optimistic Favorite Actions** - Adding/Removing to favorites displays the result (gold star icon) and if setting localStorage fails it rolls back to previous state
 
 
 ## Tech stack
