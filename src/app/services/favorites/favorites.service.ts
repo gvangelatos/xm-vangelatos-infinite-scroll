@@ -17,25 +17,49 @@ export class FavoritesService {
   }
 
   addFavorite(image: PicsumPhoto) {
+    const previous = this.favoritesMap();
+    this.addToFavMap(image);
+    this.persistOrRollback(previous);
+  }
+
+  removeFavorite(imageId: string) {
+    const previous = this.favoritesMap();
+    this.removeFromFavMap(imageId);
+    this.persistOrRollback(previous);
+  }
+
+  isFavorite(imageId: string) {
+    return computed(() => this.favoritesMap().has(imageId));
+  }
+
+  private persistOrRollback(previous: Map<string, PicsumPhoto>) {
+    try {
+      const ok = this.localStorageService.setItem(
+        LocalStorageKeysEnum.Favorites,
+        Array.from(this.favoritesMap().values()),
+      );
+      if (ok === false) {
+        this.favoritesMap.set(previous);
+      }
+    } catch {
+      this.favoritesMap.set(previous);
+    }
+  }
+
+  private addToFavMap(image: PicsumPhoto) {
     this.favoritesMap.update((map) => {
       const updated = new Map(map);
       updated.set(image.id, image);
       return updated;
     });
-    this.persistFavorites();
   }
 
-  removeFavorite(imageId: string) {
+  private removeFromFavMap(imageId: string) {
     this.favoritesMap.update((map) => {
       const updated = new Map(map);
       updated.delete(imageId);
       return updated;
     });
-    this.persistFavorites();
-  }
-
-  isFavorite(imageId: string) {
-    return computed(() => this.favoritesMap().has(imageId));
   }
 
   private loadFavorites() {
@@ -44,12 +68,5 @@ export class FavoritesService {
         LocalStorageKeysEnum.Favorites,
       ) ?? [];
     this.favoritesMap.set(new Map(stored.map((photo) => [photo.id, photo])));
-  }
-
-  private persistFavorites() {
-    this.localStorageService.setItem(
-      LocalStorageKeysEnum.Favorites,
-      Array.from(this.favoritesMap().values()),
-    );
   }
 }

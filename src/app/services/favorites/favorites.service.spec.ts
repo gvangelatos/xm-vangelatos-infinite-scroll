@@ -102,6 +102,13 @@ describe('FavoritesService', () => {
 
       expect(service.favorites()).toHaveLength(1);
     });
+
+    it('should roll back when persisting fails', () => {
+      localStorageService.setItem.mockReturnValueOnce(false);
+      service.addFavorite(MockPicksumPhoto);
+
+      expect(service.favorites()).toEqual([]);
+    });
   });
 
   describe('removeFavorite', () => {
@@ -139,6 +146,16 @@ describe('FavoritesService', () => {
         LocalStorageKeysEnum.Favorites,
         [MockPicksumPhoto, MockPicksumPhoto2],
       );
+    });
+
+    it('should roll back when persisting fails', () => {
+      localStorageService.setItem.mockReturnValueOnce(false);
+      service.removeFavorite(MockPicksumPhoto.id);
+
+      expect(service.favorites()).toEqual([
+        MockPicksumPhoto,
+        MockPicksumPhoto2,
+      ]);
     });
   });
 
