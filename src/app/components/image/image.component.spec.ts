@@ -24,7 +24,6 @@ describe('ImageComponent', () => {
 
   describe('imageClicked', () => {
     it('should emit the model', () => {
-      fixture.componentRef.setInput('model', MockPicksumPhoto);
       const emitSpy = jest.spyOn(component.photoClickedEmitter, 'emit');
       const container = fixture.nativeElement.querySelector('.container');
 
