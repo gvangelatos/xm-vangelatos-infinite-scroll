@@ -7,7 +7,13 @@
       <div class="error">Oops... Something went wrong!</div>
     }
     @if (model.photo) {
-      <app-image class="image" [photoModel]="model.photo" [priority]="true" />
+      <app-image
+        class="image"
+        [photoModel]="model.photo"
+        [priority]="true"
+        [imgHeight]="model.photo.height"
+        [imgWidth]="model.photo.width"
+      />
       <button matButton="elevated" (click)="toggleFavourite(model.photo)">
         @if (isFavorite()) {
           Remove from Favorites

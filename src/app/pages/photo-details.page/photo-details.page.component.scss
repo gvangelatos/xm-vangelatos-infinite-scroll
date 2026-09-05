@@ -1,3 +1,8 @@
+:host{
+  height: calc(100vh - 64px);
+  display: block;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,4 +11,13 @@
   height: 100%;
   padding: 16px;
   box-sizing: border-box;
+}
+
+.image {
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }

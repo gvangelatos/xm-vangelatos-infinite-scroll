@@ -6,16 +6,16 @@
     <img
       [ngSrc]="photoModel().constructed_url"
       [alt]="photoModel().author"
-      [width]="IMG_TILE_SIZE"
-      [height]="IMG_TILE_SIZE"
+      [width]="imgWidth()"
+      [height]="imgHeight()"
       [priority]="true"
     />
   } @else {
     <img
       [ngSrc]="photoModel().constructed_url"
       [alt]="photoModel().author"
-      [width]="IMG_TILE_SIZE"
-      [height]="IMG_TILE_SIZE"
+      [width]="imgWidth()"
+      [height]="imgHeight()"
     />
   }
   <mat-icon

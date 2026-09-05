@@ -25,6 +25,8 @@ export class ImageComponent {
   readonly photoClickedEmitter = output<PicsumPhoto>();
   readonly photoModel = input.required<PicsumPhoto>();
   readonly priority = input.required<boolean>();
+  readonly imgWidth = input<number>(IMG_TILE_SIZE);
+  readonly imgHeight = input<number>(IMG_TILE_SIZE);
   readonly isFavourite = computed(() =>
     this.favoritesService.isFavorite(this.photoModel().id)(),
   );
